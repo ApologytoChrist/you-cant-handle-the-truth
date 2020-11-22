@@ -81,6 +81,11 @@ public class HandleTruthTest {
             System.out.println(entry);
             assertFalse(entry.getValue().contains(" "));
             assertFalse(entry.getValue().contains("\\W"));
+            if (entry.getValue().contains("'")) {
+                int apostrophe = entry.getValue().toString().indexOf("'");
+                Character singleChar = entry.getValue().toString().charAt(apostrophe + 1);
+                assertFalse(singleChar.equals(' '));
+            }
 
         }
 
