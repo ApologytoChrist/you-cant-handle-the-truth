@@ -4,8 +4,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class HandleTruthTest {
     @Test
@@ -64,7 +63,7 @@ public class HandleTruthTest {
                         "\n" +
                         "Meanwhile, Michelle hasn’t aged a day. I ask her what her secret is and she just says “fresh fruits and vegetables.” It’s aggravating.\n" +
                         "\n" +
-                        "Fact is though, at this point my legacy is finally beginning to take shape. The economy is getting better. Nine in ten Americans now have health coverage. Today thanks to Obamacare you no longer have to worry about losing your insurance if you lose your job. You’re welcome, Senate democrats.\n "+
+                        "Fact is though, at this point my legacy is finally beginning to take shape. The economy is getting better. Nine in ten Americans now have health coverage. Today thanks to Obamacare you no longer have to worry about losing your insurance if you lose your job. You’re welcome, Senate democrats.\n " +
                         "\n" +
                         "Look, it is true I have not managed to make everybody happy. Six years into my presidency some people still say I’m arrogant, aloof, condescending. Some people are so dumb. No wonder I don’t meet with them. And that’s not all people say about me. A few weeks ago, Dick Cheney says he thinks I’m the worst president of his lifetime. Which is interesting because I think Dick Cheney is the worst president of my lifetime. Quite a coincidence. I mean everybody’s got something to say these days.\n" +
                         "\n" +
@@ -73,22 +72,26 @@ public class HandleTruthTest {
                         "It gets worse. Just this week, Michele Bachmann actually predicted that I would bring about the biblical end of days. Now, that’s a legacy. That’s big. I mean, Lincoln, Washington, they didn’t do that.\n" +
                         "\n"
         };
-        TreeMap<Integer, Set<String>> answer = HandleTruth.wordCount(msgs[7]);
-        Integer prev = Integer.MAX_VALUE;
-        for (Map.Entry<Integer, Set<String>> entry : answer.entrySet()) {
-            assertTrue(entry.getKey() < prev);
-            prev = entry.getKey();
-            System.out.println(entry);
-            assertFalse(entry.getValue().contains(" "));
-            assertFalse(entry.getValue().contains("\\W"));
-            if (entry.getValue().contains("'")) {
-                int apostrophe = entry.getValue().toString().indexOf("'");
-                Character singleChar = entry.getValue().toString().charAt(apostrophe + 1);
-                assertFalse(singleChar.equals(' '));
+        for (int i = 0; i < msgs.length; i++) {
+            TreeMap<Integer, Set<String>> answer = HandleTruth.wordCount(msgs[i]);
+            if (msgs[i] == null) {
+                assertNull(answer);
+            } else {
+                Integer prev = Integer.MAX_VALUE;
+                for (Map.Entry<Integer, Set<String>> entry : answer.entrySet()) {
+                    assertTrue(entry.getKey() < prev);
+                    prev = entry.getKey();
+                    System.out.println(entry);
+                    assertFalse(entry.getValue().contains(" "));
+                    assertFalse(entry.getValue().contains("\\W"));
+                    if (entry.getValue().contains("'")) {
+                        int apostrophe = entry.getValue().toString().indexOf("'");
+                        Character singleChar = entry.getValue().toString().charAt(apostrophe + 1);
+                        assertFalse(singleChar.equals(' '));
+                    }
+                }
             }
-
+            System.out.println("\n");
         }
-
     }
-
 }

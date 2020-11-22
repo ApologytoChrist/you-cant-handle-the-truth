@@ -9,11 +9,9 @@ public class HandleTruth {
         msg = msg.toLowerCase();
 
         // split the message into word set and regex for special characters
-        //String regex = "[\\s,\\-;.:?—”“\\[\\]\\W]+";
         String regex = "[^\\w']+";
         // split the message into word set
         String[] words = msg.split(regex);
-        System.out.println(Arrays.toString(words));
 
         // use map to count the occurrences of each word
         HashMap<String, Integer> wordMap = new HashMap<>();
