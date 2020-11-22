@@ -13,7 +13,7 @@ public class HandleTruthTest {
         String[] msgs = {
                 null,
                 "Can you imagine an imaginary menagerie manager imagining managing an imaginary menagerie.",
-                "This is a ship-shipping ship shipping shipping -ships.",
+                "This is a ship-shipping ship shipping shipping-ships.",
                 "Rose rose to put rose roes on her rows of roses.",
                 "If it is it, it is it; if it is it is it, it is.",
                 "That that exists exists in that that that that exists exists in.",
