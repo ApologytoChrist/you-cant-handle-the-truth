@@ -73,12 +73,14 @@ public class HandleTruthTest {
                         "It gets worse. Just this week, Michele Bachmann actually predicted that I would bring about the biblical end of days. Now, that’s a legacy. That’s big. I mean, Lincoln, Washington, they didn’t do that.\n" +
                         "\n"
         };
-        TreeMap<Integer, Set<String>> answer = HandleTruth.wordCount(msgs[6]);
+        TreeMap<Integer, Set<String>> answer = HandleTruth.wordCount(msgs[7]);
         Integer prev = Integer.MAX_VALUE;
         for (Map.Entry<Integer, Set<String>> entry : answer.entrySet()) {
             assertTrue(entry.getKey() < prev);
             prev = entry.getKey();
+            System.out.println(entry);
             assertFalse(entry.getValue().contains(" "));
+            assertFalse(entry.getValue().contains("\\W"));
 
         }
 
